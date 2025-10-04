@@ -1,6 +1,6 @@
-from models.audio_model import DummyAudioTranscriber
+from models.audio_model import WhisperXTranscriber
 
-transcriber = DummyAudioTranscriber()
+transcriber = WhisperXTranscriber(model_name="small")
 transcriber.load_model()
 
 async def handle_audio_upload(file):
