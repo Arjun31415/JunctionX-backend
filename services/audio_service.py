@@ -7,6 +7,7 @@ save_directory = "models/distilbert-base-uncased-hate-speech-checker/best-weight
 
 
 async def handle_audio_upload(file):
+    print("Recieved upload")
     transcript_result = await transcriber.transcribe(file)
     print(transcript_result)
     model = AutoModelForSequenceClassification.from_pretrained(save_directory)
