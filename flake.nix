@@ -27,6 +27,8 @@
             ruff
             loguru
             whisperx
+            fastapi
+            datasets
           ];
         };
       };
