@@ -44,6 +44,5 @@ class WhisperXTranscriber(BaseAudioTranscriber):
             f.write(await file.read())
 
         result = self.model.transcribe(temp_path)
-        text = result.get("text", "").strip()
-        
-        return text or "[No transcription output]"
+        print(result)
+        return result
