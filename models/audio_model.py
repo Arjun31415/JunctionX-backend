@@ -34,15 +34,10 @@ class WhisperXTranscriber(BaseAudioTranscriber):
         self.model = whisperx.load_model(self.model_name, device=self.device)
         print("[INFO] WhisperX model loaded successfully.")
 
-    async def transcribe(self, file: UploadFile) -> str:
+    async def transcribe(self, file: str) -> str:
         if self.model is None:
             self.load_model()
 
-        os.makedirs("uploads", exist_ok=True)
-        temp_path = os.path.join("uploads", file.filename)
-        with open(temp_path, "wb") as f:
-            f.write(await file.read())
-
-        result = self.model.transcribe(temp_path)
+        result = self.model.transcribe(file)
         print(result)
         return result
