@@ -10,6 +10,7 @@ save_directory = "models/distilbert-base-uncased-hate-speech-checker/best-weight
 
 async def handle_audio_upload(file):
     # Save uploaded file temporarily
+    print(file)
     suffix = os.path.splitext(file.filename)[-1].lower()
     with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as temp_input:
         contents = await file.read()
@@ -28,7 +29,6 @@ async def handle_audio_upload(file):
 
     # Transcribe the (possibly converted) audio file
     transcript_result = await transcriber.transcribe(audio_path)
-    print(transcript_result)
 
     # Load the classification model
     model = AutoModelForSequenceClassification.from_pretrained(save_directory)
@@ -42,6 +42,8 @@ async def handle_audio_upload(file):
         res["score"] = results[0]["score"]
 
     # Clean up temporary files
-    os.remove(audio_path)
+    # os.remove(audio_path)
+    print(audio_path)
+    print(transcript_result)
 
     return transcript_result

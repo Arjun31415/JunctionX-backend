@@ -31,7 +31,7 @@ class WhisperXTranscriber(BaseAudioTranscriber):
     def load_model(self):
         import whisperx  # local import (so file doesn’t break if WhisperX isn’t installed yet)
         print(f"[INFO] Loading WhisperX model: {self.model_name} on {self.device}")
-        self.model = whisperx.load_model(self.model_name, device=self.device)
+        self.model = whisperx.load_model(self.model_name, device=self.device,language="en")
         print("[INFO] WhisperX model loaded successfully.")
 
     async def transcribe(self, file: str) -> str:
